@@ -18,6 +18,7 @@ app.get('/',  async (req, res) => {
     res.status(200).send(image);
   } catch (e) {
     console.log('ERROR!')
+    console.error(e)
     console.error(JSON.stringify(e))
     res.status(500).send(e)
   }
