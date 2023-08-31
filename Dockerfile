@@ -1,5 +1,5 @@
 # Stage 1
-FROM node:18.15.0-alpine AS base
+FROM node:18.17.1-alpine AS base
 ENV NODE_ENV production
 
 RUN mkdir -p /app
