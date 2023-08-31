@@ -12,12 +12,15 @@ app.get('/',  async (req, res) => {
     const image = await nodeHtmlToImage({
       type: 'jpeg',
       quality: 100,
-      output: './image.jpeg',
       selector: 'div.center-block',
       html: html
     });
+    console.log('image?')
     res.status(200).send(image);
   } catch (e) {
+    console.log('ERROR!')
+    console.error(e);
+    console.error(JSON.stringify(e))
     res.status(500).send(e)
   }
 });
