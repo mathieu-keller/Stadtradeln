@@ -1,4 +1,4 @@
-FROM node:18.17.1-alpine AS base
+FROM node:20.5.1-alpine AS base
 ENV NODE_ENV production
 
 RUN mkdir -p /app
@@ -9,7 +9,7 @@ COPY package-lock.json /app/package-lock.json
 
 RUN npm install --omit=dev
 
-FROM gcr.io/distroless/nodejs18:nonroot
+FROM gcr.io/distroless/nodejs20:nonroot
 USER nonroot
 COPY --from=base /app /app
 
