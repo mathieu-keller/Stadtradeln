@@ -1,12 +1,13 @@
-FROM node:20.5.1-alpine AS base
-RUN mkdir -p /app
-WORKDIR /app
-COPY app.js /app/app.js
-COPY package.json /app/package.json
-COPY package-lock.json /app/package-lock.json
-
+FROM ghcr.io/puppeteer/puppeteer:21.1.1
+USER pptruser
 ENV NODE_ENV production
-RUN apk add --no-cache  chromium --repository=http://dl-cdn.alpinelinux.org/alpine/v3.10/main
-RUN npm install --omit=dev
+WORKDIR /home/pptruser
+COPY --chown=pptruser app.js /home/pptruser/app.js
+COPY --chown=pptruser package.json /home/pptruser/package.json
+COPY --chown=pptruser package-lock.json /home/pptruser/package-lock.json
 
-CMD ["/app/app.js"]
+RUN npm install
+
+EXPOSE 8080
+
+CMD ["/home/pptruser/app.js"]
