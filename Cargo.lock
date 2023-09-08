@@ -1247,7 +1247,6 @@ name = "stadtradeln"
 version = "0.1.0"
 dependencies = [
  "actix-web",
- "openssl",
  "reqwest",
 ]
 
