@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 reqwest = "0.11.20"
 actix-web = "4.4.0"
+openssl = { version = "0.10.57", features = ["vendored"] }
