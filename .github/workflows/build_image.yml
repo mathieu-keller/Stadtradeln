@@ -17,8 +17,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_TOKEN }}
-      - name: install package
-        run: sudo apt install libssl-dev
       - uses: Swatinem/rust-cache@v2
       - uses: actions-rs/toolchain@v1
         with:
