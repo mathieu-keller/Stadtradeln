@@ -1,13 +1,9 @@
-FROM ghcr.io/puppeteer/puppeteer:21.1.1
-USER pptruser
-ENV NODE_ENV production
-WORKDIR /home/pptruser
-COPY --chown=pptruser app.js /home/pptruser/app.js
-COPY --chown=pptruser package.json /home/pptruser/package.json
-COPY --chown=pptruser package-lock.json /home/pptruser/package-lock.json
+FROM alpine:3.18.3
 
-RUN npm install
+RUN addgroup -S 10001 && adduser -S 10001 -G 10001
+USER 10001:10001
 
-EXPOSE 8080
+WORKDIR /home/notifier/bin/
+COPY --chown=10001:10001 target/x86_64-unknown-linux-musl/release/das_keyboard_github_service .
+CMD ["./stadtradeln"]
 
-CMD ["/home/pptruser/app.js"]
